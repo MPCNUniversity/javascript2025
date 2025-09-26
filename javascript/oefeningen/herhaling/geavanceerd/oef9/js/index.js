@@ -1,0 +1,1 @@
+// Controleer of een getal een priemgetal is: Vraag een getal aan de gebruiker en gebruik een for-loop om te controleren of het een priemgetal is.

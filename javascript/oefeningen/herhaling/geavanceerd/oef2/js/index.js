@@ -1,0 +1,1 @@
+// Bereken de faculteit van een getal : Vraag een getal aan de gebruiker en gebruik een for- loop om de faculteit (factorial) van dat getal te berekenen.

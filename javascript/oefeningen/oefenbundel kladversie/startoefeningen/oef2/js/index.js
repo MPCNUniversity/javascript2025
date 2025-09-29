@@ -2,3 +2,6 @@
 
 var voorNaam= window.prompt("Geef uw naam in:");
 console.log(voorNaam)
+
+let familieNaam = window.prompt("Wat is uw familienaam?");
+console.log(familieNaam)

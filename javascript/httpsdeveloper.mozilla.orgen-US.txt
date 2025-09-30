@@ -3,3 +3,6 @@ https://developer.mozilla.org/en-US/
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
 
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions
+
+Databases, testdatabase mySQL
+https://dev.mysql.com/doc/sakila/en/

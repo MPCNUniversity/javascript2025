@@ -7,4 +7,17 @@ for (let b =1;getallenreeks<=a;b++){
     console.log(getallenreeks);
     getallenreeks = getallenreeks+getallenreeks;
 }
-console.log(getallenreeks);
+console.log(getallenreeks)
+
+// for (let i=1;i<=limiet;i=i*2){
+// console.log(i);
+
+
+// for (let i=1;i<=limiet;i=i+0){
+// console.log(i);
+// i=i*2
+
+
+// for (let i=1;i<=limiet;i++){
+// console.log(i);
+// i=i*2-1;

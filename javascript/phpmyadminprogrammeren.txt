@@ -1,0 +1,110 @@
+	/Database maken
+
+CREATE DATABASE dbwagens;
+
+	/database gebruiken
+
+USE dbwagens;
+
+
+	/tabel maken
+
+CREATE TABLE merken( id INT(11) UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+ naam VARCHAR(255) NOT NULL );
+
+CREATE TABLE types (
+    id Int(11) unsigned PRIMARY KEY AUTO_INCREMENT,
+    	name Varchar (255) NOT NULL
+    );
+
+CREATE TABLE modellen ( id Int(11) unsigned PRIMARY KEY AUTO_INCREMENT, name varchar(255) NOT NULL );
+
+
+	/1 op veel relatie leggen tussen tabellen
+
+ALTER TABLE `modellen` ADD `merken_id` INT NOT NULL AFTER `id`;
+
+CREATE TABLE modellen(
+    id INT(11) UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    merken_id Int(11 UNSIGNED NOT NULL,
+    name VARCHAR(255) NOT NULL, 
+    FOREIGN KEY (merken_id) REFERENCES merken(id)
+    ON UPDATE RESTRICT ON DELETE RESTRICT;
+    );
+
+
+/coderen van relationele integriteit
+
+SELECT co.country, ci.city
+FROM country co
+INNER JOIN city ci ON co.country_id =ci.country_id
+;
+
+SELECT co.country, ci.city
+FROM country co
+INNER JOIN city ci ON co.country_id =ci.country_id
+ORDER BY co.country ASC
+;
+
+/Bij een vreemde database (gouden regel nooit inner join gebruiken) -> LEFT JOIN
+
+SELECT co.country, ci.city
+FROM country co
+LEFT JOIN city ci ON co.country_id =ci.country_id
+ORDER BY co.country ASC
+;
+
+// toon alle films  met de acteurs en de datum waarop de film beschikbaar werd gesteld.
+
+SELECT f.title, a.first_name, a.last_name, f.release_year
+FROM film f 
+LEFT JOIN film_actor fa ON f.film_id=fa.film_id
+LEFT JOIN actor a ON fa.actor_id=a.actor_id
+;
+
+
+vind alle medewerkers met de verhuurtransacties die zij persoonlijk hebben afgehandeld
+
+SELECT s.first_name, s.last_name, r.rental_id, r.rental_date
+FROM staff s
+LEFT JOIN rental r ON s.staff_id=r.staff_id
+;
+
+uitbreiden met payment
+
+SELECT s.first_name, s.last_name, r.rental_id, r.rental_date, p.amount
+FROM staff s
+LEFT JOIN rental r ON s.staff_id=r.staff_id
+LEFT JOIN payment p on r.rental_id=p.rental_id
+;
+
+//toon alle categorien van films en hoeveelheid films die eraan zijn gekoppeld
+1.weten welke tabellen
+2.bekijk de data in elke tabel
+3. zoek de verbindingen tussen de joins
+4.leg de joins in je syntax
+	verbind de sleutels altijd startend van de 1 kant dus de primary key
+5.zet de veldenen eventueel velden met functies in je select
+6.gebruik indien nodig where, group by, having, order by
+
+SELECT c.name, COUNT(f.film_id)
+FROM category c 
+LEFT JOIN film_category fc on  c.category_id=fc.category_id
+LEFT JOIN film f on fc.film_id=f.film_id
+GROUP BY c.name
+;
+
+//Selecteer alle adressen en geef indien beschikbaar de bijhorende klanten weer
+1.weten welke tabellen
+2.bekijk de data in elke tabel
+3. zoek de verbindingen tussen de joins
+4.leg de joins in je syntax
+	verbind de sleutels altijd startend van de 1 kant dus de primary key
+5.zet de veldenen eventueel velden met functies in je select
+6.gebruik indien nodig where, group by, having, order by
+
+SELECT a.address, c.first_name, c.last_name
+FROM address a
+LEFT JOIN customer c on a.address_id=c.address_id
+;
+

@@ -1,0 +1,14 @@
+1. vraag aan de gebruiker om x aantal getallen in te lezen en deze in een array te pushen.
+console.log(array) is je resultaat.
+
+
+Het examen
+
+10 schrijven en uitvoeren stored procedure
+20 schrijven en toepassen advanced sql functies
+10 omgaan met problematische queries
+10 toepassing security 
+
+50 theoretisch examen
+
+25/50 punten op examen zijn normalisatie

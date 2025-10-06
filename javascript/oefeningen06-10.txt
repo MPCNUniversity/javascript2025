@@ -1,0 +1,55 @@
+
+// Vraag de gebruiker hoeveel getallen hij wil invoeren
+const aantal = parseInt(prompt("Hoeveel getallen wil je invoeren?"));
+
+const getallen = [];
+
+for (let i = 0; i < aantal; i++) {
+    const input = parseFloat(prompt(`Geef getal ${i + 1}:`));
+    getallen.push(input);
+}
+
+console.log("Je array is:", getallen);
+
+
+
+
+// Vraag de gebruiker hoeveel getallen hij wil invoeren
+const aantal = parseInt(prompt("Hoeveel getallen wil je invoeren?"));
+
+const getallen = [];
+const getallen2 = [];
+
+for (let i = 0; i < aantal; i++) {
+    const input = parseFloat(prompt(`Geef getal ${i + 1}:`));
+    getallen.push(input);
+    getallen2.push(input);
+
+
+}
+
+console.log("Je array is:", getallen);
+console.log("Je array is:", getallen2);
+
+
+
+
+// Vraag de gebruiker hoeveel getallen hij wil invoeren
+const aantal = parseInt(prompt("Hoeveel getallen wil je invoeren?"));
+
+const getallen = [];
+const getallen2 = [];
+const som = [];
+
+for (let i = 0; i < aantal; i++) {
+    const input = parseFloat(prompt(`Geef getal ${i + 1}:`));
+    getallen.push(input);
+    getallen2.push(input);
+    som.push(getallen[i]+getallen2[i]);
+
+
+}
+
+console.log("Je array is:", getallen);
+console.log("Je array is:", getallen2);
+console.log("Je array is:", som);

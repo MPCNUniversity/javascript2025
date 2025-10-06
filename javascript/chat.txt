@@ -1,0 +1,17 @@
+Benny
+  3:02 PM
+hallo een vraagje ik heb het toch goed op he je moet altijd een group by gebruiken als er een functie in de select zit he grtz
+
+
+
+
+
+
+
+
+syntraprogrammeurs
+  3:03 PM
+Dag Benny,
+Dit zijn de regels.
+Inderdaad wanneer je een functie in de select hebt dan gebruik je ALTIJD een group by.
+Wanneer je dan de group by hebt dan herhaal je de velden ZONDER functie die je gebruikt hebt in je select en zet deze naast de group by

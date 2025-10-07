@@ -1,0 +1,10 @@
+Oefening 1: Som van alle elementen in een array
+Schrijf een programma dat een array van getallen neemt en de som van alle getallen in de array berekent.
+Oefening 2: Grootste getal in een array vinden
+Schrijf een programma dat het grootste getal in een array van getallen vindt.
+Oefening 3: Filter even getallen uit een array
+Schrijf een programma dat een array doorloopt en alle even getallen afdrukt.
+Oefening 4: Omgekeerde array afdrukken
+Schrijf een programma dat de elementen van een array in omgekeerde volgorde afdrukt.
+Oefening 5: Zoeken in een array
+Schrijf een programma dat controleert of een bepaald getal aanwezig is in een array en "Gevonden!" afdrukt als het aanwezig is, anders "Niet gevonden".

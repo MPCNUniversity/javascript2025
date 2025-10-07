@@ -1,0 +1,1 @@
+// Vind de grootste deler van een getal : Vraag een getal aan de gebruiker en gebruik een for loop om de grootste deler (anders dan zichzelf) van dat getal te vinden.

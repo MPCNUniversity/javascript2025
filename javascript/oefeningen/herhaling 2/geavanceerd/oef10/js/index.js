@@ -1,0 +1,1 @@
+// Print een driehoek van sterretjes : Gebruik een for-loop om een driehoek van sterretjes te printen, waarbij het aantal rijen door de gebruiker wordt opgegeven.  Bijvoorbeeld, voor 5 rijen:

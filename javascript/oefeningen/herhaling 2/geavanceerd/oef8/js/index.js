@@ -1,0 +1,1 @@
+// Som van de Fibonacci-reeks: Bereken de som van de eerste n getallen in de Fibonacci-reeks, waarbij n door de gebruiker wordt ingevoerd.

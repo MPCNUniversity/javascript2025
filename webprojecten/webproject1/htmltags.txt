@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta author="Friedel Majoor">
+    <meta name="keywords" content="CONTAINERS, BOX MODEL">
+    <meta name="description" content="Dit is mijn pagina die gaat over CONTAINERS? BOX MODEL">
+    <title>HTML containers en box model</title>
+</head>
+<body>
+
+<!--<div id="fullstackdevelopment">-->
+<!--    <p><dfn>Webontwikkelaars</dfn>zijn in staat webapplicaties te ontwikkelen</p>-->
+<!--    <p><dfn>HTML</dfn> is de taal van het web.</p>-->
+<!--    <p><dfn><abbr title="Cascading Style Sheet">CSS</abbr></dfn> wordt gebruikt om HTML te gaan stylen volgens design.</p>-->
+<!--</div>-->
+<h1>Containers en semantiek</h1>
+<!--BEGIN SECTION FULL STACK DEVELOPMENT-->
+<!--<section id="fullstackdevelopment">-->
+<!--    <p><dfn>Webontwikkelaars</dfn>zijn in staat webapplicaties te ontwikkelen</p>-->
+<!--    <p><dfn>HTML</dfn> is de taal van het web.</p>-->
+<!--    <p><dfn><abbr title="Cascading Style Sheet">CSS</abbr></dfn> wordt gebruikt om HTML te gaan stylen volgens design.</p>-->
+<!--</section>-->
+
+<section id="fullstackdevelopment">
+    <h2>Full Stack Development</h2>
+    <article>
+        <h3>Webontwikkeling</h3>
+        <p><dfn>Webontwikkel</dfn></p>
+    </article>
+</section>
+
+<!--END SECTION FULL STACK DEVELOPMENT-->
+
+
+
+<H2> MAIN tag en ASIDE tag</H2>
+
+<!--
+Een aside bevat relevante informatie die op het hoofdthema gaan.
+Het moet ermee te maken hebben.   een hoofd artikel en aside relevant info over dat hoofdthema
+
+    <body>
+        <header></header>
+            <main>
+            </main>
+        <footer></footer>
+      </body>
+-->
+
+
+
+<h3>dfn tag</h3>
+<p><dfn><abbr title="Hyper Text Markup Language">HTML</abbr></dfn> is de taal gebruikt binnen webdevelopment.</p>
+
+
+<section id="locatie">
+    <iframe src="https://www.google.com/maps/@50.9457682,3.0992183,17.75z?entry=ttu&g_ep=EgoyMDI1MTAwMS4wIKXMDSoASAFQAw%3D%3D"></iframe>
+</section>
+
+<section id="afbeeldingen">
+    <img src="./images/img.png" alt="anonymous hacker">
+</section>
+
+<section id="video">
+    <iframe width="560" height="315" src="https://youtu.be/Q1E642g4cF4?si=VCAfsWmA1nhC21-Y"></iframe>
+</section>
+
+<section>
+    <article>
+        <img src="./images/img.png" alt="anonymous hacker">
+        <h3>humor</h3>
+        <h4>wat is humor</h4>
+        <p>uitleg van de humor</p>
+        <iframe width="560" height="315" src="https://youtu.be/Q1E642g4cF4?si=VCAfsWmA1nhC21-Y"></iframe>
+    </article>
+</section>
+
+<section id="contact"></section>
+    <form action>
+        <input type="button">
+        <input type="checkbox">
+        <input type="color">
+        <input type="date">
+        <input type="datetime-local">
+        <input type="image">
+        <input type="email">
+    </form>
+
+<a href="tel:+3244444446">Bel mij</a>
+<
+
+
+
+
+
+<!--<ul id="navigatie">-->
+<!--    <li><a href=""></a></li>-->
+<!--    <li><a href=""></a></li>-->
+<!--    <li><a href=""></a></li>-->
+<!--    <li><a href=""></a></li>-->
+<!--    <li><a href=""></a></li>-->
+<!--</ul>-->
+<!--<ul>-->
+<!--    <li></li>-->
+<!--    <li></li>-->
+<!--    <li></li>-->
+<!--    <li></li>-->
+<!--    <li></li>-->
+<!--</ul>-->
+
+
+
+
+<footer>&copy;MPCNUniversity - 2025 - HTML-cursus</footer>
+</body>
+</html>
+

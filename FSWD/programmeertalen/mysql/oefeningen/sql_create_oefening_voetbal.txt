@@ -1,0 +1,132 @@
+| WedstrijdNr | Datum      | Thuisploeg     | Stadion           | Uitploeg       | Score |
+| ----------- | ---------- | -------------- | ----------------- | -------------- | ----- |
+| 1           | 01-09-2025 | Torhout United | Stadion Torhout   | Brugge City    | 2-1   |
+| 2           | 08-09-2025 | Roeselare FC   | Stadion Roeselare | Torhout United | 0-3   |
+| 3           | 15-09-2025 | Brugge City    | Stadion Brugge    | Oostende Stars | 1-1   |
+
+Dit zijn wedstrijden uit eerste nationale. Voor deze oefening bestaan ER GEEN andere divisies.
+We gaan ervan uit dat enkel eerste nationale bestaat. Normaliseer
+
+
+
+Stadion
+| StadionID | Naam              |
+| --------- | ----------------- |
+| 1         | Stadion Torhout   |
+| 2         | Stadion Roeselare |
+| 3         | Stadion Brugge    |
+Team
+| TeamID | Naam           | StadionID                               |
+| ------ | -------------- | --------------------------------------- |
+| 1      | Torhout United | 1                                       |
+| 2      | Roeselare FC   | 2                                       |
+| 3      | Brugge City    | 3                                       |
+| 4      | Oostende Stars | (nog toevoegen, geen stadion vermeld)   |
+Wedstrijd
+| WedstrijdID | Datum      | ThuisTeamID | UitTeamID | StadionID | ThuisGoals | UitGoals |
+| ----------- | ---------- | ----------- | --------- | --------- | ---------- | -------- |
+| 1           | 01-09-2025 | 1           | 3         | 1         | 2          | 1        |
+| 2           | 08-09-2025 | 2           | 1         | 2         | 0          | 3        |
+| 3           | 15-09-2025 | 3           | 4         | 3         | 1          | 1        |
+
+
+
+
+
+
+
+
+Herhaling op normalisatie van "vuile" databases
+
+
+| WedstrijdNr | Datum      | Thuisploeg     | Stadion           | Uitploeg       | Score |
+| ----------- | ---------- | -------------- | ----------------- | -------------- | ----- |
+| 1           | 01-09-2025 | Torhout United | Stadion Torhout   | Brugge City    | 2-1   |
+| 2           | 08-09-2025 | Roeselare FC   | Stadion Roeselare | Torhout United | 0-3   |
+| 3           | 15-09-2025 | Brugge City    | Stadion Brugge    | Oostende Stars | 1-1   |
+
+Dit zijn wedstrijden uit eerste nationale. Voor deze oefening bestaan ER GEEN andere divisies.
+We gaan ervan uit dat enkel eerste nationale bestaat. Normaliseer
+
+
+Stadion
+| StadionID | Naam              |
+| --------- | ----------------- |
+| 1         | Stadion Torhout   |
+| 2         | Stadion Roeselare |
+| 3         | Stadion Brugge    |
+Team
+| TeamID | Naam           | StadionID                               |
+| ------ | -------------- | --------------------------------------- |
+| 1      | Torhout United | 1                                       |
+| 2      | Roeselare FC   | 2                                       |
+| 3      | Brugge City    | 3                                       |
+| 4      | Oostende Stars | (nog toevoegen, geen stadion vermeld)   |
+Wedstrijd
+| WedstrijdID | Datum      | ThuisTeamID | UitTeamID | StadionID | ThuisGoals | UitGoals |
+| ----------- | ---------- | ----------- | --------- | --------- | ---------- | -------- |
+| 1           | 01-09-2025 | 1           | 3         | 1         | 2          | 1        |
+| 2           | 08-09-2025 | 2           | 1         | 2         | 0          | 3        |
+| 3           | 15-09-2025 | 3           | 4         | 3         | 1          | 1        |
+
+
+
+CREATE DATABASE IF NOT EXISTS wedstrijduitslagen_db
+	CHARACTER SET utf8mb4
+ 	COLLATE utf8mb4_unicode_ci;
+
+USE wedstrijduitslagen_db;
+
+CREATE TABLE stadion (
+stadion_id TINYINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  naam          VARCHAR(20) NOT NULL UNIQUE
+);
+
+CREATE TABLE ploegen (
+	ploeg_id	TINYINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	naam		VARCHAR(150) NOT NULL UNIQUE,
+	stadion		VARCHAR(150) NOT NULL UNIQUE
+);
+
+CREATE TABLE wedstrijden (
+wedstrijd_id TINYINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	datum 		DATE NOT NULL;
+	thuisteam 	TINYINT UNSIGNED NOT NULL,
+	uitteam		TINYINT UNSIGNED NOT NULL,
+	stadion		TINYINT UNSIGNED NOT NULL,
+	thuisgoals 	TINYINT NOT NULL,
+	uitgoals	TINYINT NOT NULL,
+FOREIGN KEY (thuisteam) REFERENCES ploegen(ploeg_id)
+	ON UPDATE RESTRICT ON DELETE RESTRICT,
+FOREIGN KEY (uitteam) REFERENCES ploegen(ploeg_id)
+	ON UPDATE RESTRICT ON DELETE RESTRICT,
+FOREIGN KEY (stadion) REFERENCES stadion(stadion_id)
+	ON UPDATE RESTRICT ON DELETE RESTRICT
+);
+
+
+
+Oefening op courses_db
+
+-- Create database
+CREATE DATABASE IF NOT EXISTS courses_db
+  CHARACTER SET utf8mb4
+  COLLATE utf8mb4_unicode_ci;
+USE courses_db;
+-- Lookup: aanspreking
+CREATE TABLE aanspreking (
+  aanspreking_id TINYINT UNSIGNED PRIMARY KEY,
+  aanspreking          VARCHAR(20) NOT NULL UNIQUE
+) ENGINE=InnoDB;
+
+
+
+
+
+
+
+
+
+
+
+

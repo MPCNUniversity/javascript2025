@@ -1,0 +1,213 @@
+Normalisatie
+
+6 normalisatielevels
+
+1,   naamgeving 0 	inventarisatie  : opmaken van de verschillende tabellen in de database
+
+2,   naamgeving 1 	atomair  ; komma's wegwerken, unieke id's  (klantaddress : straat, plaats) (producten : product , bedrag)
+
+				tip examen : een tabel zonder een "primary key" indexering normaliseren
+
+				elke cell 1 waarde
+
+3,   naamgeving 2	scheidden van 
+			We gaan de velden die gelinkt zijn aan primary key en niet gelinkt aan primary key scheidden
+
+
+4,  naamgeving 3 Bouce-Codd
+
+		
+5,
+
+
+oefening klas 
+
+Student	(Student_id , voornaam, Familienaam)
+vak	(vakId, naam)
+docent	(docent_id, familienaam, voornaam)
+resultaat (resultaat_id, resultaat, maximum)
+aanspreking( aanspreking_id, aanspreking)
+
+
+-- Create database
+CREATE DATABASE IF NOT EXISTS courses_db
+  CHARACTER SET utf8mb4
+  COLLATE utf8mb4_unicode_ci;
+USE courses_db;
+-- Lookup: aanspreking
+CREATE TABLE aanspreking (
+  aanspreking_id TINYINT UNSIGNED PRIMARY KEY,
+  aanspreking          VARCHAR(20) NOT NULL UNIQUE
+) ENGINE=InnoDB;
+-- Docent
+CREATE TABLE docent (
+  docent_id      INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  aanspreking_id TINYINT UNSIGNED NOT NULL,
+  voornaam       VARCHAR(100) NOT NULL,
+  familienaam    VARCHAR(100) NOT NULL,
+  CONSTRAINT fk_docent_aanspreking
+    FOREIGN KEY (aanspreking_id)
+    REFERENCES aanspreking(aanspreking_id)
+    ON UPDATE RESTRICT
+    ON DELETE RESTRICT
+) ENGINE=InnoDB;
+-- Student
+CREATE TABLE student (
+  student_id      INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  aanspreking_id  TINYINT UNSIGNED NOT NULL,
+  voornaam        VARCHAR(100) NOT NULL,
+  familienaam     VARCHAR(100) NOT NULL,
+  CONSTRAINT fk_student_aanspreking
+    FOREIGN KEY (aanspreking_id)
+    REFERENCES aanspreking(aanspreking_id)
+    ON UPDATE RESTRICT
+    ON DELETE RESTRICT
+) ENGINE=InnoDB;
+-- Vak (subject)
+CREATE TABLE vak (
+  vak_id        INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  naam          VARCHAR(120) NOT NULL UNIQUE,
+  max_resultaat TINYINT UNSIGNED NOT NULL
+) ENGINE=InnoDB;
+-- Cursus (program)
+CREATE TABLE cursus (
+  cursus_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  naam      VARCHAR(150) NOT NULL UNIQUE
+) ENGINE=InnoDB;
+-- Koppeltabel: cursus_student
+CREATE TABLE cursus_student (
+  id         BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  cursus_id  INT UNSIGNED NOT NULL,
+  student_id INT UNSIGNED NOT NULL,
+  CONSTRAINT uq_cursus_student UNIQUE (cursus_id, student_id),
+  CONSTRAINT fk_cs_cursus
+    FOREIGN KEY (cursus_id)
+    REFERENCES cursus(cursus_id)
+    ON UPDATE RESTRICT
+    ON DELETE CASCADE,
+  CONSTRAINT fk_cs_student
+    FOREIGN KEY (student_id)
+    REFERENCES student(student_id)
+    ON UPDATE RESTRICT
+    ON DELETE CASCADE
+) ENGINE=InnoDB;
+-- Resultaten student-vak
+CREATE TABLE student_vak (
+  id         BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  student_id INT UNSIGNED NOT NULL,
+  vak_id     INT UNSIGNED NOT NULL,
+  resultaat  DECIMAL(5,2) NOT NULL,
+  datum      DATE NOT NULL,
+  CONSTRAINT uq_student_vak_datum UNIQUE (student_id, vak_id, datum),
+  CONSTRAINT fk_sv_student
+    FOREIGN KEY (student_id)
+    REFERENCES student(student_id)
+    ON UPDATE RESTRICT
+    ON DELETE CASCADE,
+  CONSTRAINT fk_sv_vak
+    FOREIGN KEY (vak_id)
+    REFERENCES vak(vak_id)
+    ON UPDATE RESTRICT
+    ON DELETE RESTRICT
+) ENGINE=InnoDB;
+-- Koppeltabel: docent_vak
+CREATE TABLE docent_vak (
+  id        BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  docent_id INT UNSIGNED NOT NULL,
+  vak_id    INT UNSIGNED NOT NULL,
+  CONSTRAINT uq_docent_vak UNIQUE (docent_id, vak_id),
+  CONSTRAINT fk_dv_docent
+    FOREIGN KEY (docent_id)
+    REFERENCES docent(docent_id)
+    ON UPDATE RESTRICT
+    ON DELETE CASCADE,
+  CONSTRAINT fk_dv_vak
+    FOREIGN KEY (vak_id)
+    REFERENCES vak(vak_id)
+    ON UPDATE RESTRICT
+    ON DELETE RESTRICT
+) ENGINE=InnoDB;
+-- Aanspreking
+INSERT INTO aanspreking (aanspreking_id, aanspreking) VALUES
+(1, 'Dhr.'),
+(2, 'Mevr.'),
+(3, 'Genius');
+-- Docenten
+INSERT INTO docent (docent_id, aanspreking_id, voornaam, familienaam) VALUES
+(1, 2, 'Hilde', 'Jacobs'),
+(2, 1, 'Tom', 'Claeys'),
+(3, 2, 'Sara', 'Jacobs'),
+(4, 1, 'Tim', 'Willems'),
+(5, 1, 'Tom', 'Vanhoutte');
+-- Studenten
+INSERT INTO student (student_id, aanspreking_id, voornaam, familienaam) VALUES
+(1, 1, 'Jan', 'Peeters'),
+(2, 2, 'Sarah', 'Desmet'),
+(3, 1, 'Warre', 'Neirinck'),
+(4, 1, 'Jari', 'Vandeput');
+-- Cursussen
+INSERT INTO cursus (cursus_id, naam) VALUES
+(1, 'Full Stack Developer'),
+(2, 'Grafisch Vormgever');
+-- Vakken
+INSERT INTO vak (vak_id, naam, max_resultaat) VALUES
+(1, 'Databanken', 20),
+(2, 'Webdesign', 20),
+(3, 'Programmeren', 20);
+-- Cursus_student (studenten ingeschreven in cursussen)
+INSERT INTO cursus_student (id, cursus_id, student_id) VALUES
+(1, 1, 3), -- Warre in Full Stack Developer
+(2, 1, 4); -- Jari in Full Stack Developer
+-- Student_vak (resultaten van studenten op vakken)
+INSERT INTO student_vak (id, student_id, vak_id, resultaat, datum) VALUES
+(1, 4, 1, 10, '2025-10-06'), -- Jari - Databanken
+(2, 4, 2, 12, '2025-10-08'), -- Jari - Webdesign
+(3, 4, 3, 12, '2025-10-10'); -- Jari - Programmeren
+-- Docent_vak (welke docent geeft welk vak)
+INSERT INTO docent_vak (id, docent_id, vak_id) VALUES
+(1, 5, 1), -- Tom Vanhoutte geeft Databanken
+(2, 5, 2), -- Tom Vanhoutte geeft Webdesign
+(3, 5, 3); -- Tom Vanhoutte geeft Programmeren
+
+
+	
+
+-- Create database
+CREATE DATABASE IF NOT EXISTS courses_db
+  CHARACTER SET utf8mb4
+  COLLATE utf8mb4_unicode_ci;
+USE courses_db;
+-- Lookup: aanspreking
+CREATE TABLE aanspreking (
+  aanspreking_id TINYINT UNSIGNED PRIMARY KEY,
+  aanspreking          VARCHAR(20) NOT NULL UNIQUE
+) ENGINE=InnoDB;
+
+-- Voetbal
+CREATE DATABASE  IF NOT EXISTS 	wedstrijduitslagen_db
+	CHARACTER SET utf8mb4
+	COLLATE utf8mb4_unicode_ci; 
+USE wedstrijduislagen_db;
+
+-- ploegen
+CREATE TABLE ploegen (
+	ploeg_id 	TINYINT UNSIGNED PRIMARY KEY,
+	naam 		VARCHAR(120) NOT NULL UNIQUE;
+	stadion		VARCHAR(120) NOT NULL UNIQUE
+)
+
+--wedstijden
+--resultaat
+
+
+
+
+Extra oefening normalisatie
+
+| UitleningNr | BoekTitel  | Auteur          | LenerNaam    | LenerAdres          | UitDatum   | TerugDatum |
+| ----------- | ---------- | --------------- | ------------ | ------------------- | ---------- | ---------- |
+| 1           | De Avonden | Gerard Reve     | Jan Peeters  | Torhout, Markt 12   | 01-09-2025 | 15-09-2025 |
+| 2           | Kaas       | Willem Elsschot | Sarah Desmet | Brugge, Steenstraat | 02-09-2025 | 16-09-2025 |
+| 3           | De Avonden | Gerard Reve     | Sarah Desmet | Brugge, Steenstraat | 05-09-2025 | 19-09-2025 |
+
+

@@ -1,0 +1,44 @@
+🧮 Wat doet % in JavaScript?
+Het modulus-operator (%) geeft je de rest van een deling. Dus:
+
+javascript
+let i = 10;
+console.log(i % 3); // Output: 1
+Want 10 gedeeld door 3 is 3 met een rest van 1.
+
+🔍 Waarom is i % 3 == 0 nuttig?
+Dat is een manier om te checken of i deelbaar is door 3 zonder rest. Bijvoorbeeld:
+
+javascript
+let i = 9;
+if (i % 3 == 0) {
+  console.log("i is deelbaar door 3");
+}
+Hier is 9 % 3 gelijk aan 0, dus de if-voorwaarde is waar.
+
+🧠 Denkbeeldige toepassingen
+Controle op even/oneven: i % 2 == 0 betekent even getal.
+
+Cyclische patronen: Bijvoorbeeld iets doen om de 5 stappen: if (i % 5 == 0)
+
+Groeperen: Bijvoorbeeld bij het verdelen van items in rijen of kolommen.
+
+🔮 Bonus: modulus in actie
+Stel je voor dat je een robot hebt die elke 3 stappen een dansje doet:
+
+javascript
+for (let i = 1; i <= 10; i++) {
+  if (i % 3 == 0) {
+    console.log(`Stap ${i}: robot doet een dansje`);
+  } else {
+    console.log(`Stap ${i}: gewoon wandelen`);
+  }
+}
+Output:
+
+Code
+Stap 1: gewoon wandelen
+Stap 2: gewoon wandelen
+Stap 3: robot doet een dansje
+...
+Wil je ook weten hoe modulus zich gedraagt met negatieve getallen of floats? Of wil je een visuele uitleg met een diagram?

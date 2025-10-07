@@ -1,0 +1,176 @@
+Oefening 1
+Hoeveel verschillende landen zijn er?  /SELECT * from country;
+
+SELECT DISTINCT COUNT(country.country)
+from country;
+
+
+
+
+oefening 2  /niet
+Ontdek de top 5 landen met het grootste aantal klanten.
+
+
+oefening 3 
+Wat zijn de namen van alle talen in de database (alfabetisch gesorteerd)? SELECT * FROM `language`
+
+SELECT DISTINCT l.name
+FROM language l;
+
+oefening 4 
+Retourneer de volledige namen (eerste en laatste) van acteurs met "SON" in hun achternaam, gesorteerd op hun voornaam. SELECT * FROM `actor`
+
+SELECT a.first_name ,a.last_name
+FROM actor a
+WHERE a.last_name  LIKE '%son%'
+ORDER BY a.first_name ASC;
+
+oefening 11
+Welke acteurs hebben de voornaam 'Scarlett'
+
+SELECT a.actor_id, a.first_name, a.last_name
+FROM actor a
+WHERE a.first_name LIKE 'Scarlett'
+;
+
+oefening 12
+Welke acteurs hebben de achternaam 'Johansson'?
+
+SELECT a.actor_id, a.first_name, a.last_name
+FROM actor a
+WHERE a.last_name like 'Johansson';
+
+
+oefening 13 
+Hoeveel verschillende acteurs zijn er enkel rekening houdend met de familienaam?
+
+SELECT a.last_name,COUNT(a.last_name)
+FROM actor a
+GROUP BY a.last_name;
+
+
+oefening 14
+Welke namen worden niet herhaald?
+
+SELECT a.last_name as familienaam, COUNT(a.last_name) as aantal
+FROM actor a
+GROUP BY a.last_name
+HAVING aantal=1;
+
+
+oefening 15 
+Welke namen verschijnen meer dan eens?
+
+SELECT a.last_name as familienaam, COUNT(a.last_name) as aantal
+FROM actor a
+GROUP BY a.last_name
+HAVING aantal>1;
+
+
+oefening 20
+Wat is de gemiddelde looptijd (duur) van alle films in de sakila DB?
+
+SELECT AVG(f.length) as 'gemiddelde duur'
+FROM film f;
+
+
+oefening 22
+Toon de voor- en achternaam van alle acteurs van de tafel acteur.
+
+SELECT a.first_name as voornaam, a.last_name as familienaam
+FROM actor a;
+
+
+oefening 23 
+Toon de voor-en achternaam van elke acteur in één kolom in hoofdletters. Noem de kolom acteurnaam
+
+SELECT concat(a.first_name, a.last_name) as acteurnaam
+FROM actor a;
+
+
+oefening 24 
+Je moet het ID -nummer, de voornaam en de achternaam van een acteur vinden ,van wie je alleen de voornaam kent, 'Joe'. Schrijf de select hiervoor.
+
+SELECT a.actor_id as id, a.first_name as voornaam, a.last_name as familienaam
+FROM actor a
+WHERE a.first_name like 'JOE';
+
+oefening 25 
+Zoek alle acteurs wiens achternaam de letters GEN bevat
+
+SELECT a.actor_id as id, a.first_name as voornaam, a.last_name as familienaam
+FROM actor a
+WHERE a.last_name like '%GEN%';
+
+
+oefening 26
+Zoek alle acteurs wiens achternaam de letters LI  bevat. Bestel deze keer de rijen op achternaam en voornaam , in die volgorde
+
+SELECT a.last_name as familienaam, a.first_name as voornaam
+FROM actor a
+WHERE a.last_name like '%LI%';
+
+oefening 27 
+Gebruik IN om de land_id en landkolommen van de volgendse landen weer te geven: Afghanistan, Bangladesh en China
+
+SELECT c.country_id as land_id, c.country as landkolom
+FROM country c
+WHERE c.country IN ('Afghanistan', 'Bangladesh', 'China');
+
+oefening 28
+Hoeveel verschillende unieke namen zijn er (actors)?
+
+/SELECT COUNT(DISTINCT a.first_name) as 'originele voornamen', count(DISTINCT a.last_name) as 'originele familienamen'
+/FROM actor a;
+
+SELECT DISTINCT CONCAT(a.first_name,' ', a.last_name) as 'unieke namen'
+FROM actor a;
+
+
+oefening 29 
+Welke namen worden niet herhaald?
+
+!!!!!!!!!!!!!!!!!!!
+
+oefening 30
+Welke namen verschijnen meer dan eens?
+
+
+!!!!!!!!!!!!!!!!!!
+
+oefening 33
+Hoeveel exemplaren van de film Hunchback Impossible bestaan er?
+
+SELECT COUNT(f.title) as 'aantal'
+FROM film f
+WHERE f.title like ('%Hunchback Impossible%');
+
+
+
+
+
+oefening 36
+Selecteer title, beschrijving, rating, film lengte en toon alle films van langer dan 3 uur.
+
+oefening 37
+Selecteer het betalings id, bedrag en betaaldatum uitgevoerd na 27/5/2005
+
+oefening 38
+Selecteer alle klanten waarvan de familienamen beginnen met een s en de voornamen eindigen met een n.
+
+oefening 39
+Selecteer alle niet actieve klanten waarvan de familienaam begint met een m.
+
+oefening 40
+Selecteer alle kolommen van de category tabel waar de primary key groter is dan 4 en de naam begint met C of S of T
+
+oefening 42
+Toon alle namen van acteurs die eenzelfde familienaam delen door ten minste 2 acteur
+
+
+
+extra
+Geef een lijst van films gehuurd door klanten met naam van medewerker die de vehuur heeft gedaan en de naam van de stad waar de klant woont
+
+
+

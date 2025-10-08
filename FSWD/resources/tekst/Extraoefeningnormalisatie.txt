@@ -1,0 +1,8 @@
+Extra oefening normalisatie
+
+| UitleningNr | BoekTitel  | Auteur          | LenerNaam    | LenerAdres          | UitDatum   | TerugDatum |
+| ----------- | ---------- | --------------- | ------------ | ------------------- | ---------- | ---------- |
+| 1           | De Avonden | Gerard Reve     | Jan Peeters  | Torhout, Markt 12   | 01-09-2025 | 15-09-2025 |
+| 2           | Kaas       | Willem Elsschot | Sarah Desmet | Brugge, Steenstraat | 02-09-2025 | 16-09-2025 |
+| 3           | De Avonden | Gerard Reve     | Sarah Desmet | Brugge, Steenstraat | 05-09-2025 | 19-09-2025 |
+

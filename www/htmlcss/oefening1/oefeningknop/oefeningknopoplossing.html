@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Flex Verdeling</title>
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="d-flex" style="width:100%; height:400px;">
+
+    <!-- Linkerkolom: 1,2,3,4,5 (neemt 33.33%) -->
+    <section class="d-flex" style="width:33.33%; border:1px solid #000;">
+        <div class="d-flex flex-column flex-grow-1">
+            <div class="flex-grow-1 d-flex justify-content-center align-items-center" style="border:1px solid #000;">1</div>
+            <div class="flex-grow-1" style="border:1px solid #000;">2</div>
+        </div>
+        <div class="d-flex flex-column flex-grow-1">
+            <div class="d-flex flex-row flex-grow-1">
+                <div class="flex-grow-1" style="border:1px solid #000;">3</div>
+                <div class="flex-grow-1" style="border:1px solid #000;">4</div>
+            </div>
+            <div class="flex-grow-1" style="border:1px solid #000;">5</div>
+        </div>
+    </section>
+
+    <!-- Rechterkolom: Blok 1-5 (neemt 66.66%) -->
+    <section class="d-flex flex-column" style="flex:0 0 66.66%;">
+
+        <!-- Rij met 3 kolommen -->
+        <div class="d-flex flex-row flex-grow-1">
+            <div class="flex-grow-1" style="border:1px solid #000;">Blok 1</div>
+            <div class="flex-grow-1" style="border:1px solid #000;">Blok 2</div>
+            <div class="flex-grow-1" style="border:1px solid #000;">Blok 3</div>
+        </div>
+
+        <!-- Rij met 2 kolommen -->
+        <div class="d-flex flex-row flex-grow-1">
+            <div class="flex-grow-1" style="border:1px solid #000;">Blok 4</div>
+            <div class="flex-grow-1" style="border:1px solid #000;">Blok 5</div>
+        </div>
+
+    </section>
+
+</div>
+
+</body>
+</html>

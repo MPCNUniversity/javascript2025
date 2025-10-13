@@ -187,16 +187,16 @@ CREATE TABLE aanspreking (
 CREATE DATABASE  IF NOT EXISTS 	wedstrijduitslagen_db
 	CHARACTER SET utf8mb4
 	COLLATE utf8mb4_unicode_ci; 
-USE wedstrijduislagen_db;
+USE wedstrijduitslagen_db;
 
 -- ploegen
 CREATE TABLE ploegen (
 	ploeg_id 	TINYINT UNSIGNED PRIMARY KEY,
-	naam 		VARCHAR(120) NOT NULL UNIQUE;
+	naam 		VARCHAR(120) NOT NULL UNIQUE,
 	stadion		VARCHAR(120) NOT NULL UNIQUE
 )
-
---wedstijden
+;
+--wedstrijden
 --resultaat
 
 

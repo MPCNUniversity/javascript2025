@@ -1,0 +1,504 @@
+SELECT category.name, count(film.film_id)as aantalfilms
+from film
+left join film_category on film.film_id = film_category.film_id
+left join category on film_category.category_id = category.category_id
+GROUP BY category.name;
+
+
+
+CREATE VIEW film_by_category
+AS
+SELECT category.name, count(film.film_id)as aantalfilms
+from film
+left join film_category on film.film_id = film_category.film_id
+left join category on film_category.category_id = category.category_id
+GROUP BY category.name;
+
+Select * from film_by_category
+left join
+
+----------------------------------------------------------------------------------
+
+# aantal klanten teruggeven via een out parameter
+
+DROP PROCEDURE IF EXISTS sp_count_customers;
+DELIMITER //
+
+BEGIN
+SELECT COUNT(*) from customer
+END //
+
+
+DELIMITER ;
+
+
+
+--------------------------------------------------------------------
+
+
+# aantal klanten teruggeven via een out parameter
+
+DROP PROCEDURE IF EXISTS sp_count_customers;
+DELIMITER //
+
+
+CREATE PROCEDURE sp_count_customers(OUT)
+
+
+BEGIN
+SELECT COUNT(*) from customer
+END //
+
+
+DELIMITER ;
+
+
+
+
+DROP PROCEDURE IF EXISTS sp_count_customers;
+DELIMITER //
+
+CREATE PROCEDURE sp_count_customers(OUT p_total INT)
+BEGIN
+SELECT count(*) INTO p_total from customer;
+
+END //
+DELIMITER ;
+
+
+-------------------------------------------------------------------------------------------
+
+# aantal klanten teruggeven via een out parameter
+
+DROP PROCEDURE IF EXISTS sp_count_customers;
+DELIMITER //
+CREATE PROCEDURE sp_count_customers(OUT p_total INT)
+BEGIN
+SELECT COUNT(*) from customer;
+END //
+
+
+DELIMITER ;
+
+---------------------------------------------------------------------------------------
+set @aantal=0;
+call sp_count_customers(@aantal);
+select @aantal as totaal_klanten;
+
+
+
+------------------------------------------------------------------------------------------
+set @aantal=0;
+call sp_count_customers(@aantal);
+select @aantal as totaal_klanten;
+
+
+# aantal klanten teruggeven via een out parameter
+
+DROP PROCEDURE IF EXISTS sp_count_customers;
+DELIMITER //
+CREATE PROCEDURE sp_count_customers(OUT p_total INT)
+BEGIN
+SELECT COUNT(*) from customer;
+END //
+
+DELIMITER ;
+
+
+
+
+
+------------------------------------------------------------------
+# een sp die hello sakila weergeeft
+
+DROP PROCEDURE IF EXISTS sp_hello;
+
+DELIMITER //
+
+CREATE PROCEDURE sp_hello(OUT p_message VARCHAR(50))
+
+BEGIN
+
+END //
+
+DELIMITER ;
+
+
+
+
+
+# een sp die hello sakila weergeeft
+
+DROP PROCEDURE IF EXISTS sp_hello;
+
+DELIMITER //
+
+CREATE PROCEDURE sp_hello(OUT p_message VARCHAR(50))
+
+BEGIN
+SET p_message = 'hello sakila from friedel';
+END //
+
+DELIMITER ;
+
+
+
+
+----------------------------------
+set @msg = '';
+CALL sp_hello(@message);
+SELECT @msg;
+
+
+set @msg = 'hello friedel';
+CALL sp_hello(@message);
+SELECT @msg;
+
+
+
+
+
+--------------------------------------------
+set @msg = 'hello friedel';
+CALL sp_hello(@message);
+SELECT @msg;
+
+
+# een sp die hello sakila weergeeft
+
+DROP PROCEDURE IF EXISTS sp_hello;
+
+DELIMITER //
+
+CREATE PROCEDURE sp_hello(OUT p_message VARCHAR(50))
+
+BEGIN
+SET p_message = 'hello sakila from friedel';
+END //
+
+DELIMITER ;	
+
+
+
+
+-------------------------------------------------------
+# som van 2 getallen
+
+DROP PROCEDURE IF EXISTS  sp_add_numbers;
+
+DELIMITER //
+CREATE PROCEDURE sp_add_numbers(IN n_a INT, IN n_b, OUT result INT)
+
+BEGIN
+	SET result = n_a + n_b
+END
+DELIMITER ;
+
+
+
+-----------------------------------------
+
+
+
+DROP PROCEDURE IF EXISTS sp_add_numbers;
+
+DELIMITER //
+CREATE PROCEDURE sp_add_numbers(IN n_a INT, IN n_b INT,OUT result INT)
+BEGIN
+	SET result = n_a + n_b;
+END //
+DELIMITER ;
+
+
+
+--------------------------------------
+SET @uitkomst= 0;
+CALL sp_add_numbers(5,7,@uitkomst);
+SELECT @uitkomst as som;
+
+-----------------------------------------------------------
+
+DROP PROCEDURE IF EXISTS sp_multiply_numbers;
+
+DELIMITER //
+CREATE PROCEDURE sp_multiply_numbers(IN n_a INT, IN n_b INT,OUT result INT)
+BEGIN
+	SET result = n_a + n_b;
+END //
+DELIMITER ;
+
+
+SET @uitkomst= 0;
+CALL sp_multiply_numbers(5,7,@uitkomst);
+SELECT @uitkomst as som;
+
+
+
+
+--------------------------------------------------------- vraag
+SET @gem=0;
+CALL sp_avg_rental_rate(@gem)
+SELECT @gem AS gemiddelde_prijs
+
+
+SET @gem=0;
+CALL sp_avg_rental_rate(@gem);
+SELECT @gem AS gemiddelde_prijs;
+
+# Schrijf de stored procedure sp_avg_rental_rate, dus de gemiddelde huurpijs van alle films
+
+-------------------------------------------------------------------------- fout
+
+DROP PROCEDURE IF EXISTS sp_avg_rental_rate;
+
+DELIMITER //
+CREATE PROCEDURE sp_avg_rental_rate(IN n_a DECIMAL, IN n_b DECIMAL,OUT result DECIMAL)
+BEGIN
+	SET result = n_a + n_b;
+END //
+DELIMITER ;
+
+
+
+--------------------------------------------------- goed
+
+DROP PROCEDURE IF EXISTS sp_avg_rental_rate;
+
+DELIMITER //
+CREATE PROCEDURE sp_avg_rental_rate (OUT gemiddelde DECIMAL(5,2))
+BEGIN
+	SELECT AVG(film.rental_rate) into gemiddelde FROM film;
+END //
+DELIMITER ;
+
+
+
+SET @gem=0;
+CALL sp_avg_rental_rate(@gem);
+SELECT @gem AS gemiddelde_prijs;
+
+------------------------------------------------------------------------ vraag
+set @a=0;
+CALL sp_count_action_films(@a)
+SELECT @a AS aantal_action_films;
+
+# tel het aantal films die in de categorie action zitten
+
+
+
+DROP PROCEDURE IF EXISTS sp_count_action_films;
+
+DELIMITER //
+CREATE PROCEDURE sp_count_action_films (OUT aantal PRI)
+BEGIN
+	SELECT COUNT(category.name) into aantal FROM category;
+END //
+DELIMITER ;
+
+
+
+set @a=0;
+CALL sp_count_action_films(@a)
+SELECT @a AS aantal_action_films;
+
+# tel het aantal films die in de catego
+
+-----------------------------------------------------testoplossing
+
+DROP PROCEDURE IF EXISTS sp_count_action_films;
+
+DELIMITER //
+CREATE PROCEDURE sp_count_action_films (OUT aantal TinyINT)
+BEGIN
+	SELECT COUNT(category.name) into aantal FROM category;
+END //
+DELIMITER ;
+
+
+
+set @a=0;
+CALL sp_count_action_films(@a)
+SELECT @a AS aantal_action_films;
+
+# tel het aantal films die in de catego
+
+-----------poging 2
+DROP PROCEDURE IF EXISTS sp_count_action_films;
+
+DELIMITER //
+CREATE PROCEDURE sp_count_action_films (OUT aantal TinyINT)
+BEGIN
+	SELECT COUNT(category.name) into aantal FROM category;
+END //
+DELIMITER ;
+
+
+
+set @a='Action';
+CALL sp_count_action_films(@a);
+SELECT @a AS aantal_action_films;
+
+# tel het aantal films die in de categorie action zitten
+
+
+--------------------------------------goed
+DROP PROCEDURE IF EXISTS sp_count_action_films;
+
+DELIMITER //
+CREATE PROCEDURE sp_count_action_films (OUT aantal INT)
+BEGIN
+SELECT count(film.film_id)
+from film
+left join film_category on film.film_id = film_category.film_id
+left join category on film_category.category_id = category.category_id
+GROUP BY category.name
+HAVING category.name='ACTION';
+END //
+DELIMITER ;
+
+set @a='Action';
+CALL sp_count_action_films(@a);
+SELECT @a AS aantal_action_films;
+
+---------------------------------------------------action
+DROP PROCEDURE IF EXISTS sp_count_action_films;
+
+DELIMITER //
+CREATE PROCEDURE sp_count_action_films (OUT aantal INT)
+BEGIN
+SELECT count(film.film_id)
+from film
+left join film_category on film.film_id = film_category.film_id
+left join category on film_category.category_id = category.category_id
+GROUP BY category.name
+HAVING category.name='ACTION';
+END //
+DELIMITER ;
+
+set @a='Action';
+CALL sp_count_action_films(@a);
+SELECT @a AS aantal_action_films;
+
+
+
+--------------------------------------------------horror
+DROP PROCEDURE IF EXISTS sp_count_horror_films;
+
+DELIMITER //
+CREATE PROCEDURE sp_count_horror_films (OUT aantal INT)
+BEGIN
+SELECT count(film.film_id)
+from film
+left join film_category on film.film_id = film_category.film_id
+left join category on film_category.category_id = category.category_id
+GROUP BY category.name
+HAVING category.name='HORROR';
+END //
+DELIMITER ;
+
+set @a='Horror';
+CALL sp_count_horror_films(@a);
+SELECT @a AS aantal_horror_films;
+
+-------------------------------------------------------algemeen foutief nakijken
+DROP PROCEDURE IF EXISTS sp_count_action_films;
+
+DELIMITER //
+CREATE PROCEDURE sp_count_action_films (OUT aantal INT, IN nieuwecategorie VARCHAR(50))
+BEGIN
+SELECT count(film.film_id)
+from film
+left join film_category on film.film_id = film_category.film_id
+left join category on film_category.category_id = category.category_id
+GROUP BY category.name
+HAVING category.name='ACTION';
+END //
+DELIMITER ;
+
+set @a='Action';
+CALL sp_count_action_films(@a);
+SELECT @a AS aantal_action_films;
+
+
+
+
+
+-----------------------------------------------------------------------------------------nieuwe oef
+
+DROP PROCEDURE IF EXISTS sp_totaal_uitgegeven_door_een_klant;
+
+DELIMITER //
+
+CREATE PROCEDURE sp_totaal_uitgegeven_door_een_klant(OUT som Decimal(5,2))
+
+BEGIN 
+SELECT SUM(payment.amount) INTO som from payment;
+END
+
+
+DELIMITER ;
+
+
+#(som van amount in de tabel payment) en afgerond.
+
+
+
+
+
+
+
+SET @uitgegeven = 0;
+CALL sp_totaal_uitgegeven_door_een_klant(7, @uitgegeven);
+SELECT @uitgegeven as totaal_bedrag;
+
+-------------------klad------
+
+DROP PROCEDURE IF EXISTS sp_avg_rental_rate;
+DELIMITER //
+
+CREATE PROCEDURE sp_avg_rental_rate (OUT gemiddelde DECIMAL(5,2))
+BEGIN
+	SELECT AVG(film.rental_rate) into gemiddelde FROM film;
+END //
+DELIMITER ;
+
+SET @gem=0;
+CALL sp_avg_rental_rate(@gem);
+SELECT @gem AS gemiddelde_prijs;
+
+
+
+
+DROP PROCEDURE IF EXISTS sp_totaal_uitgegeven_door_een_klant;
+DELIMITER //
+CREATE PROCEDURE sp_totaal_uitgegeven_door_een_klant(OUT som Decimal(5,2))
+BEGIN 
+	SELECT SUM(payment.amount) INTO som from payment;
+END //
+DELIMITER ;
+
+
+SET @uitgegeven = 0;
+CALL sp_totaal_uitgegeven_door_een_klant(7, @uitgegeven);
+SELECT @uitgegeven as totaal_bedrag;
+
+
+
+
+----------------------------goed!!!!!!!!!!!!
+#SET @uitgegeven = 0;
+#CALL sp_totaal_uitgegeven_door_een_klant(7, @uitgegeven);
+#SELECT @uitgegeven as totaal_bedrag;
+
+#(som van amount in de tabel payment) en afgerond.
+
+DROP PROCEDURE IF EXISTS sp_totaal_uitgegeven_door_een_klant;
+DELIMITER //
+CREATE PROCEDURE sp_totaal_uitgegeven_door_een_klant(IN p_id INT, OUT p_total DECIMAL(5,0))
+BEGIN
+	SELECT ROUND(sum(payment.amount),2) INTO p_total
+    FROM payment
+    WHERE payment.customer_id = p_id;
+END //
+
+DELIMITER ;

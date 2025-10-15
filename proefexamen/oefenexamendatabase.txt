@@ -1,0 +1,140 @@
+oefenexamen databases 14/10/2025 Majoor Friedel
+
+vraag 1 basis vraag
+----------------------
+SELECT * FROM actor;
+
+
+vraag 2 geselecteerde kolommen
+------------------------------
+SELECT a.first_name, a.last_name
+FROM actor a;
+
+vraag 3 Titel die begint met A (7)
+----------------------------------
+SELECT * 
+FROM Film f
+WHERE f.title LIKE 'A%';
+
+
+vraag 4 bereik op klant-id
+---------------------------
+SELECT *
+FROM customer c
+WHERE c.customer_id >= 50 and c.customer_id <= 70 ;
+
+vraag 5 Alfabetisch beperkte lijst (7)
+------------------------------------
+Select *
+FROM Film f
+ORDER BY f.title ASC
+LIMIT 10;
+
+
+
+vraag 6 Langste films (8)
+---------------------------
+SELECT f.title 
+FROM film f
+WHERE Max(f.length) DESC,
+LIMIT (10)
+;
+
+
+vraag 7 Rij toevoegen aan category
+----------------------------------
+INSERT INTO category (name, last_update)
+VALUES ('NieuweCategorie', NOW());
+
+
+
+vraag 8 meerdere rijen toevoegen
+--------------------------------
+INSERT INTO actor (first_name, last_name, last_update) 
+Values
+ ('Alice', 'Baker', NOW(),
+('John', 'Doe', NOW());
+
+
+
+vraag 9 Relatie film-categorie (10)
+-----------------------------------
+SELECT *
+FROM customer c
+JOIN film_category as fc onfc.film_id
+
+
+WHERE 
+
+vraag 10 Films binnen categorie(10)
+------------------------------------
+SELECT f.title
+FROM film f
+WHERE 
+
+
+vraag  11 Totaal aantal films (5)
+----------------------------------
+
+
+vraag 12 Aantal per categorie (top 5)
+-------------------------------------
+
+SELECT c.name AS category_name, COUNT(*) AS film_count
+FROM category AS c
+JOIN film
+
+
+vraag 13 nieuwe database sql verplicht
+------------------------------------
+
+CREATE database examens_db;
+USE database examens_db;
+
+
+
+
+vraag 14 Schema in nieuwe database sql verplicht
+--------------------------------------------------
+
+CREATE TABLE klant( 
+	klant_id INT(11) UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+ 	voornaam VARCHAR(255) NOT NULL ,
+ 	achternaam VARCHAR(255) NOT NULL ,
+ 	email VARCHAR(255) NOT NULL
+	);
+
+CREATE TABLE film(
+    	film_id Int(11) unsigned PRIMARY KEY AUTO_INCREMENT,
+    	titel VARCHAR (255) NOT NULL
+    	);        
+
+CREATE TABLE favoriet_film(
+    ff_id INT(11) UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    klant_id Int(11) UNSIGNED NOT NULL,
+    film_id INT(11) UNSIGNED NOT NULL,             
+    notitie VARCHAR(100) NOT NULL, 
+CONSTRAINT
+    FOREIGN KEY (klant_id) REFERENCES klant(klant_id),
+CONSTRAINT
+    FOREIGN KEY (film_id) REFERENCES film(film_id)
+    ON UPDATE RESTRICT ON DELETE RESTRICT
+    );
+
+
+
+
+
+vraag 15 normalisatie
+--------------------------
+probleem 1 )  redundante gegevens Er komen gegevens meerdere malen voorbeeld campusadres
+probleem 2 ) Er zijn geen logische verbindingen tussen tabellen zoals bvb klaslokaal en campus
+probleem 3 ) Telkens alle gegevens volledig ingeven voor nieuwe inschrijvingen te maken.
+
+
+
+
+
+
+
+

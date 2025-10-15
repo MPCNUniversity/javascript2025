@@ -1,0 +1,128 @@
+proefexamen  14/10/2025 Majoor Friedel
+
+vraag 1 logisch denken
+------------------------
+
+a) Sarah denkt logisch
+
+
+
+vraag 2 logisch redeneren
+----------------------------
+
+Neen we kunnen niet concluderen dat alle functies een return hebben.
+NULL is bijvoorbeeld een voorbeeld als er niets is.
+Of een variabele declareren in een script zonder er iets mee te doen.
+
+
+
+vraag 3 Sequentie/ input output
+--------------------------------
+
+let input = (window.prompt("Geef een boodschap in"));
+console.log(input);
+
+
+
+vraag 4 Selectie / if- else
+--------------------------------
+
+let leeftijd = parseInt(window.prompt("Geef uw leeftijd in jaren"));
+if (leeftijd < 18){
+	console.log("Je bent minderjarig");
+} else {
+	console.log("Je bent meerderjarig");
+};
+
+
+
+
+vraag 5 Selectie /if -else if
+---------------------------------
+
+let score = (window.prompt("Wat is uw score op 20"));
+if (score < 10){
+	console.log("Onvoldoende");
+} else if (score >=10 && score <=14) {
+	console.log("Voldoende");
+} else if (score >14 && score <= 17) {
+	console.log("Goed");
+} else {
+	console.log("Uitstekend");
+}
+
+
+
+Vraag 6 iteratie
+-------------------
+for (let i = 1; i<=10;i++){
+	console.log(i)
+}
+
+
+Vraag 7 iteratie + logica
+----------------------------
+let input = parseInt(window.prompt("Geef een getal in"));
+for (let i = 0;i<=input;i++){
+    if (i%2===0){
+        console.log(i)
+    }};
+
+
+vraag 8 Arrays
+---------------------------
+
+let films = ['jurassic park', 'godzilla', 'jurassic world', 'king kong', 'pacific rim'];
+console.log(films[2]);
+
+
+vraag 9 arrays + iteratie
+-----------------------------
+
+let getallen = [2, 4, 6, 8, 10];
+let som = 0;
+
+for (let getal of getallen){
+    som += getal;
+}
+console.log(som);
+
+
+
+
+
+vraag 10 functions
+-------------------------
+
+
+let isEven = true;
+let getal =  21 ; //kan ander getal zijn
+
+if (getal%2===0){
+    isEven = true;
+} else {
+    isEven = false;
+}
+console.log(isEven)
+
+
+hieronder verder kijken en opzoeken! oplossing niet juist
+
+function isEven(getal) {
+	if (getal % 2 === 0 ) {
+		return true
+	} else {
+		return false
+	}
+
+
+
+	
+
+
+
+
+
+
+
+
